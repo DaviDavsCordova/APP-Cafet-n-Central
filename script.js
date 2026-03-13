@@ -8,13 +8,12 @@ var cuentas = [
 // Los datos de la comida simulada
 var productos = [
     { id: 1, nombre: "Empanada", precio: 25 },
-    { id: 2, nombre: "Cachito", precio: 30},
+    { id: 2, nombre: "Cachito", precio: 30 },
     { id: 3, nombre: "Cachapa", precio: 20 },
     { id: 4, nombre: "Jugo", precio: 20 },
     { id: 5, nombre: "Café", precio: 15 },
     { id: 6, nombre: "Malta", precio: 40 },
     { id: 7, nombre: "Tizana", precio: 15 }
-    
 ];
 
 // Variables para guardar datos de las pantallas
@@ -75,12 +74,45 @@ function salir() {
 
 function toggleClave() {
     var campoClave = document.getElementById('cla');
+    var btnOjo = document.getElementById('btn-ojo');
+
     if(campoClave.type == 'password') {
         campoClave.type = 'text';
+        if (btnOjo) {
+            btnOjo.textContent = '👁️';
+        }
     } else {
         campoClave.type = 'password';
+        if (btnOjo) {
+            btnOjo.textContent = '🙈';
+        }
     }
 }
+
+
+
+function abrirSesion() {
+    document.getElementById('btn-entrar').click();
+}
+
+function irASiguienteCampo(evento, siguienteId) {
+    if(evento.key === 'Enter') {
+        evento.preventDefault();
+        if(siguienteId) {
+            document.getElementById(siguienteId).focus();
+        } else {
+            abrirSesion();
+        }
+    }
+}
+
+document.getElementById('usu').addEventListener('keydown', function(evento) {
+    irASiguienteCampo(evento, 'cla');
+});
+
+document.getElementById('cla').addEventListener('keydown', function(evento) {
+    irASiguienteCampo(evento, null);
+});
 
 // ================== MÓDULO CLIENTE ==================
 
@@ -102,11 +134,16 @@ function verCatalogo() {
 
     for(var i=0; i < productos.length; i++) {
         var p = productos[i];
-        var card = "<div class='producto-card'>";
-        card += "<h3>" + p.nombre + "</h3>";
-        card += "<p>Precio: " + p.precio + " Bs.</p>";
-        card += "<button onclick='meter(" + p.id + ")'>Añadir al Carrito</button>";
-        card += "</div>";
+        var nombreArchivo = p.nombre.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '') + ".png";
+        var imgFallback = "https://via.placeholder.com/120x120?text=" + encodeURIComponent(p.nombre);
+        var card = `<div class='producto-card'>
+            <img class='producto-imagen' src='${nombreArchivo}' alt='${p.nombre}' onerror="this.onerror=null;this.src='${imgFallback}';">
+            <div class='producto-info'>
+                <h3>${p.nombre}</h3>
+                <p>Precio: ${p.precio} Bs.</p>
+                <button onclick='meter(${p.id})'>Añadir al Carrito</button>
+            </div>
+        </div>`;
         lista.innerHTML += card;
     }
 }
