@@ -1,81 +1,171 @@
-body {
-    margin: 0 !important;
-    font-family: 'Segoe UI', Arial, sans-serif !important;
-    min-height: 100vh;
-    background: linear-gradient(to top, #BE3D2A 0%, #E78B48 52%, #F5C45E 100%) !important;
-    background-attachment: fixed;
+:root {
+    --azul: #102E50;
 }
 
-/* Franja superior minimal: título arriba a la derecha */
-body > div:first-of-type {
-    background: #102E50 !important;
-    color: #fff;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 18px;
-    padding: 15px 20px !important;
-}
-
-body > div:first-of-type h2 {
-    margin: 0;
-    font-size: 1.45rem;
-    letter-spacing: 0.3px;
-    line-height: 1.1;
-}
-
-/* Login transparente, alto y ancho de un tercio */
-#pantalla-login {
-    background: rgba(255, 255, 255, 0.12) !important;
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-    width: 33.333vw !important;
-    min-width: 320px;
-    max-width: 490px;
-    min-height: calc(100vh - 96px);
-    margin: 18px 0 16px 24px !important;
-    border: 2px solid rgba(255, 255, 255, 0.55) !important;
-    border-radius: 24px;
-    color: #102E50;
-    box-shadow: 0 18px 34px rgba(16, 46, 80, 0.23);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 30px 24px !important;
-}
-
-#pantalla-login h3 {
-    margin: 0 0 16px 0;
-    color: #102E50;
-    font-size: 2rem;
-    line-height: 1.1;
-}
-
-#pantalla-login label {
-    display: block;
-    text-align: left;
-    font-weight: 600;
-    margin: 10px 0 7px;
-}
-
-#pantalla-login input {
-    width: 100% !important;
-    padding: 12px 13px;
-    border-radius: 12px;
-    border: 1px solid rgba(16, 46, 80, 0.4);
-    background: rgba(255, 255, 255, 0.3);
-    color: #102E50;
-    outline: none;
+* {
     box-sizing: border-box;
 }
 
-#pantalla-login input:focus {
-    border-color: #102E50;
-    box-shadow: 0 0 0 3px rgba(16, 46, 80, 0.14);
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    color: #0b1f36;
+    background-image: url('https://images.unsplash.com/photo-1570824104453-508955ab713e?auto=format&fit=crop&w=2200&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-/* Lista de cuentas: animación suave escalonada y clickable */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(14, 32, 51, 0.18);
+    z-index: 0;
+}
+
+.topbar,
+main {
+    position: relative;
+    z-index: 1;
+}
+
+.topbar {
+    background: rgba(16, 46, 80, 0.88);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 20px;
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 1.45rem;
+}
+
+.info-usuario button {
+    margin-left: 10px;
+}
+
+main {
+    padding: 16px;
+}
+
+.pantalla {
+    padding: 10px;
+}
+
+.panel {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.login-panel {
+    width: min(36vw, 530px);
+    min-width: 340px;
+    min-height: calc(100vh - 112px);
+    margin-left: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.56);
+    border-radius: 24px;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    background: rgba(255, 255, 255, 0.28);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-panel h2 {
+    margin: 0 0 18px 0;
+    font-size: 2.4rem;
+    text-align: center;
+}
+
+.login-control {
+    width: min(90%, 420px);
+}
+
+.login-panel label {
+    display: block;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1.22rem;
+    margin: 12px 0 8px;
+}
+
+.login-panel input {
+    width: 100%;
+    padding: 12px 13px;
+    border-radius: 12px;
+    border: 1px solid rgba(16, 46, 80, 0.4);
+    background: rgba(255, 255, 255, 0.55);
+    font-size: 1rem;
+}
+
+.password-wrap {
+    position: relative;
+}
+
+.password-wrap input {
+    padding-right: 48px;
+}
+
+.btn-ojo {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: rgba(16, 46, 80, 0.12);
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+button {
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#btn-entrar,
+.btn-caja {
+    background: var(--azul);
+    color: #fff;
+}
+
+#btn-entrar {
+    margin-top: 16px;
+    font-size: 1.05rem;
+}
+
+.btn-confirmar {
+    background: #1f7a1f;
+    color: #fff;
+    margin-top: 8px;
+}
+
+#btn-puntos {
+    background: orange;
+    margin-top: 6px;
+}
+
+.ayuda-login {
+    margin-top: 12px;
+    text-align: center;
+}
+
 .campo-usuario {
     position: relative;
 }
@@ -114,7 +204,6 @@ body > div:first-of-type h2 {
     color: #fff;
     padding: 10px 12px;
     text-align: left;
-    cursor: pointer;
 
     opacity: 0;
     transform: translateX(-10px);
@@ -137,49 +226,32 @@ body > div:first-of-type h2 {
     to { opacity: 1; transform: translateX(0); }
 }
 
-.sugerencias-usuarios button + button {
-    margin-top: 6px;
-}
-
-.sugerencias-usuarios button:hover {
-    background: rgba(245, 196, 94, 0.38);
-    transform: none;
-}
-
-#btn-entrar {
-    width: 100% !important;
-    border-radius: 12px !important;
-    background: #102E50 !important;
-    color: #fff;
-    border: none;
-    font-weight: 700;
-    font-size: 1rem;
-    padding: 12px 14px !important;
-    margin-top: 14px;
-}
-
-
-#pantalla-login p {
-    margin-top: 14px;
-    margin-bottom: 0;
-    color: #102E50;
-    font-size: 0.9rem;
-}
-
-#pantalla-login br {
-    display: none;
-}
-
-
-#div-carrito,
-#div-historial,
-#pantalla-caja > div:last-child,
-#pantalla-admin > div {
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-button {
+.producto-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    background: #fff;
     border-radius: 8px;
-    font-weight: 600;
+}
+
+.boton-caja {
+    margin: 5px;
+}
+
+.tabla-admin {
+    border-collapse: collapse;
+}
+
+.tabla-admin thead tr {
+    background: #eee;
+}
+
+.separador-admin {
+    margin-top: 14px;
+}
+
+.btn-eliminar {
+    color: red;
+    background: transparent;
+    border: none;
 }
